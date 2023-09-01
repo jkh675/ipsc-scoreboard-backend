@@ -1,15 +1,21 @@
 import { PrimaryGeneratedColumn, BaseEntity, Column, Entity } from "typeorm";
 
 @Entity({ name: "user" })
-export class EUser extends BaseEntity {
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: number;
+    uid: number;
 
     @Column()
     firstName: string;
 
     @Column()
     lastName: string;
+
+    @Column({ unique: true })
+    username: string;
+
+    @Column()
+    email: string;
 
     @Column()
     age: number;
@@ -22,4 +28,10 @@ export class EUser extends BaseEntity {
 
     @Column()
     picture: string; //TODO: wait for media service implementation
+
+    @Column()
+    password: string; //WARN: needs encrypt service A.S.A.P.
+
+    @Column({ default: true })
+    isActive: boolean;
 }
